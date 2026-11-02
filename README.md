@@ -13,6 +13,11 @@ Velunelle 的前端设计资产库：保存**认可过的视觉模块、动效�
 
 **原版准确画面及可试玩页面：** https://witches-banquet.fuzzy-egret-1442.chatgpt.site/ ；原始仓库：https://github.com/velunelle/witches-banquet 。
 
+## 第二个项目：《第二个圣诞夜》
+
+- [SK-001 夜雨城 Skill](skills/SK-001-night-rain-city.md)：记录它是什么、官方源地址、使用方法，以及《第二个圣诞夜》新旧版本的源码入口。此项目暂不重复拆解动效组件。
+- [Skill 简表](skills/skill-index.csv)：可直接用 WPS 查看、编辑，适合继续增加下一个 Skill。
+
 ## 使用规则
 
 1. 先按资产编号查询对应源码，不重新搜索相同效果。
