@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "source_repo": "velunelle/witches-banquet",
+  "source_commit": "a2b755d5d40dd59e8182e4379d2ccecaa40b2b38",
+  "items": [
+    {
+      "id": "V-001",
+      "name": "万圣节配色",
+      "description": "紫色夜景、奶油色卡片、金色点缀",
+      "module": "配色",
+      "source": "src/opening/opening.css",
+      "verification": "已核实"
+    },
+    {
+      "id": "V-002",
+      "name": "斜贴纸张背景",
+      "description": "左右像手账纸一样斜着贴的纸条和格纹",
+      "module": "背景",
+      "source": ".paper-edge / src/opening/opening.css",
+      "verification": "已核实"
+    },
+    {
+      "id": "V-003",
+      "name": "中英双标题",
+      "description": "花体英文小标题加立体中文大标题",
+      "module": "标题",
+      "source": ".opening-caption, h1",
+      "verification": "已核实"
+    },
+    {
+      "id": "V-004",
+      "name": "四角万圣节贴纸",
+      "description": "猫、帽子、蛋糕、坩埚四角贴纸",
+      "module": "贴纸",
+      "source": ".opening-sticker",
+      "verification": "已核实"
+    },
+    {
+      "id": "V-005",
+      "name": "双角色大卡片",
+      "description": "左右两张倾斜的奶油色人物卡",
+      "module": "卡片",
+      "source": ".opening-deck, .opening-card",
+      "verification": "已核实"
+    },
+    {
+      "id": "V-006",
+      "name": "VS 圆印章",
+      "description": "两张卡片中间的金色 VS 徽章",
+      "module": "徽章",
+      "source": ".duel-seal",
+      "verification": "已核实"
+    },
+    {
+      "id": "V-007",
+      "name": "卡片下双语文案",
+      "description": "卡片下中文短句和花体英文短句",
+      "module": "文案",
+      "source": ".opening-line, .opening-script",
+      "verification": "已核实"
+    },
+    {
+      "id": "V-008",
+      "name": "进入晚宴按钮",
+      "description": "底部深紫色圆角进入按钮",
+      "module": "按钮",
+      "source": "#skip",
+      "verification": "已核实"
+    },
+    {
+      "id": "V-009",
+      "name": "上滑提示",
+      "description": "底部的上滑、滚轮、点击操作提醒",
+      "module": "提示",
+      "source": ".gesture-hint",
+      "verification": "已核实"
+    },
+    {
+      "id": "V-010",
+      "name": "星星与旋转圆环",
+      "description": "闪烁小星星和卡片后面的双圈",
+      "module": "装饰",
+      "source": ".spark, .orbit-ring",
+      "verification": "已核实"
+    },
+    {
+      "id": "M-001",
+      "name": "发牌后翻面",
+      "description": "两张卡先从下方发出，再错开时间翻到正面",
+      "module": "翻牌",
+      "source": "@keyframes deal, card-flip",
+      "verification": "已核实"
+    },
+    {
+      "id": "M-002",
+      "name": "开场依次登场",
+      "description": "标题、卡片、印章、文字按顺序出现",
+      "module": "入场",
+      "source": "content-in, deal, seal, text-in",
+      "verification": "已核实"
+    },
+    {
+      "id": "M-003",
+      "name": "倾斜与鼠标跟随",
+      "description": "开场卡固定倾斜；主游戏另一种卡会随鼠标倾斜",
+      "module": "卡片交互",
+      "source": "opening.css + src/ui/motion.js",
+      "verification": "部分核实：开场卡无持续悬浮"
+    },
+    {
+      "id": "M-004",
+      "name": "入口按钮触发",
+      "description": "按按钮、回车、空格或在电脑点击可进入",
+      "module": "按钮交互",
+      "source": "src/opening/opening.js",
+      "verification": "已核实：无特殊按钮弹跳动画"
+    },
+    {
+      "id": "M-005",
+      "name": "上滑整页退出",
+      "description": "手指上滑时开场整体上移淡出，松手后提交或回弹",
+      "module": "手势",
+      "source": "src/opening/opening.js + src/ui/motion.js",
+      "verification": "已核实"
+    },
+    {
+      "id": "M-006",
+      "name": "贴纸浮动星星闪烁",
+      "description": "贴纸缓慢浮动、星星忽明忽暗",
+      "module": "装饰动效",
+      "source": "sticker-float, twinkle",
+      "verification": "已核实"
+    }
+  ]
+}
