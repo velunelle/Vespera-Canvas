@@ -11,7 +11,7 @@
 
 ## M-005 手势退场
 
-需要同时读取原项目 `src/opening/opening.js` 和 `src/ui/motion.js`。前者把拖动距离转换为进度；后者让整个 iframe 上移、透明度降低并显示下一层页面。不是只复制 CSS 就能用。
+已在本库保存 `sources/witches-banquet/opening/opening.js` 与 `sources/witches-banquet/parent/motion.js` 两份源文件。前者把拖动距离转换为进度；后者让整个 iframe 上移、透明度降低并显示下一层页面。不是只复制 CSS 就能用。
 
 ## M-006 贴纸与星星
 
