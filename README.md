@@ -7,7 +7,7 @@ Velunelle 的前端设计资产库：保存**认可过的视觉模块、动效�
 - [通俗编号清单](ASSET_INDEX.md)：V-001～V-010（视觉）、M-001～M-006（动效）。
 - [机器可读资产目录](assets/index.json)：每项含来源、类型、查找位置及核实状态。
 - [四角贴纸原图](assets/stickers/)：4 张可复用手账贴纸，CC BY 4.0，需署名及标注来源；不含第三方人物头像。
-- [原始开场代码快照](sources/witches-banquet/opening/)：保存源项目实际 HTML/CSS/JS，供以后准确复现；不含第三方头像。
+- [原始开场代码快照](sources/witches-banquet/opening/)：保存源项目实际 HTML/CSS/JS；手势退场所需主页面源码另存于 [parent/](sources/witches-banquet/parent/)，供以后准确复现；不含第三方头像。
 - [独立动效预览](previews/witch-opening/index.html)：保留原始发牌、翻面、拼贴和手势流程，头像以占位符代替；预览并不等于原作完整美术。
 - [代码复用提示](REUSE.md)、[协作规范](AGENTS.md)、[项目任务记录模板](templates/PROJECT_TRACKER.csv)。
 
