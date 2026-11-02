@@ -6,6 +6,6 @@
 
 翻牌与动效参考来源包含 BETWEEN US（47、nival、baink）和 Trianon，原项目已标明相关 MIT 条款。见：https://github.com/velunelle/witches-banquet/blob/main/ASSETS.md 。
 
-原项目代码 MIT，参阅此库的 LICENSE。万圣节手账贴纸属于 Velunelle 项目资源，来源：https://github.com/velunelle/witches-banquet ，其 CC BY 4.0 条件见 https://creativecommons.org/licenses/by/4.0/ 。
+原项目代码 MIT，参阅此库的 LICENSE。四张开场手账贴纸已复制到 `assets/stickers/`（cat、purple-hat、cupcake、cauldron）。它们属于 Velunelle 项目按 CC BY 4.0 公开授权的素材；使用时注明作者、来源 https://github.com/velunelle/witches-banquet 、许可证 https://creativecommons.org/licenses/by/4.0/ ，以及是否修改。独立预览页仍在线引用原仓库的贴纸图片。
 
 **人物头像不再打包**：原版两张头像的第三方作者为野莓甜心，原项目说明公开再分发的许可尚未确认。本库的独立预览使用中性占位符，原版画面请直接访问游戏网站或原仓库截图。不能因为保存了原代码，就认为所有图片都能无限复用。
