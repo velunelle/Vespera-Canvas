@@ -20,7 +20,7 @@
 | M-006 | 贴纸浮动星星闪烁 | 贴纸缓慢浮动、星星忽明忽暗 | 已核实 |
 
 - 想找**翻卡片**：M-001，源码见 `sources/witches-banquet/opening/opening.css`，可看 `components/card-flip/index.html` 独立示例。
-- 想找**整张开场**：V-001～V-010 + M-001～M-006，源码快照在 `sources/witches-banquet/opening/`。
+- 想找**整张开场**：V-001～V-010 + M-001～M-006，源码快照在 `sources/witches-banquet/opening/`，四张贴纸原图在 `assets/stickers/`。
 - 想找**上滑整页退场**：M-005，除开场 JS 外，还依赖原游戏的 `src/ui/motion.js`。
 
 **说明**：16项全部编入目录；其中原样源代码已保存，部分效果仍不是相互独立的组件。M-003 原开场卡片不会持续悬浮，M-004 原按钮没有特殊弹跳效果，不会把之前推测当成实际代码。
