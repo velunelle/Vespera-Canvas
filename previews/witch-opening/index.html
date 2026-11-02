@@ -822,7 +822,7 @@ body {
 </script><script>
 // Demo shell: allow replay after the original isolated opening tells the host to exit.
 window.addEventListener("message",e=>{if(e.data?.type==="between:opening-exit"){document.body.style.pointerEvents="auto";document.body.classList.add("demo-done")}});
-document.querySelector("#demoReplay button").onclick=()=>location.reload();
+document.addEventListener("DOMContentLoaded",()=>{document.querySelector("#demoReplay button").onclick=()=>location.reload()});
 </script>
   <div class="preview-label">Vespera Canvas · 16 项开场归档演示（头像为占位符）</div><div class="demo-replay" id="demoReplay"><div>开场播放完成</div><button type="button">重播开场</button></div></body>
 </html>
