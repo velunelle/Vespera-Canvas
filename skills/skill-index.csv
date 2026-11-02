@@ -1,0 +1,2 @@
+﻿"编号","名称","一句话解释","来自哪个作品","官方Skill来源","已用过的工程源码","以后怎么用","当前是否安装","备注"
+"SK-001","夜雨城 / Night Rain City","三维夜间城市工具包，负责街道、楼宇、光影、店铺和漫游的基础能力","第二个圣诞夜（历史文件名：第十二个圣诞夜）","https://github.com/Hyraland/night-rain-city-skill","https://github.com/velunelle/the-second-christmas-night","先读SK-001文档和原项目源码；新城市再按官方SKILL.md调用","当前ChatGPT环境未发现该Skill；项目源码已保存","不重复归档整个引擎；保留两个既有版本"
