@@ -2,7 +2,7 @@
 
 《女巫的毒药》原始源码：https://github.com/velunelle/witches-banquet ，锁定提交：a2b755d5d40dd59e8182e4379d2ccecaa40b2b38 。
 
-已原样保存：`sources/witches-banquet/opening/index.html`、`opening.css`、`opening.js`。源码中引用的图片和字体仍在原仓库，所以源文件快照只是代码档案，**不是完整的离线美术包**。
+已原样保存：`sources/witches-banquet/opening/index.html`、`opening.css`、`opening.js`，以及主页面调用动效的 `sources/witches-banquet/parent/motion.js`、`index.html`。源码中引用的图片和字体仍在原仓库，所以源文件快照只是代码档案，**不是完整的离线美术包**。
 
 翻牌与动效参考来源包含 BETWEEN US（47、nival、baink）和 Trianon，原项目已标明相关 MIT 条款。见：https://github.com/velunelle/witches-banquet/blob/main/ASSETS.md 。
 
