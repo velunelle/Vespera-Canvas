@@ -1,0 +1,235 @@
+/*
+ * Vespera Canvas — Snow Studies, v1.0
+ * Two independent reference-matched canvas snow effects.
+ * Original procedural artwork. No external fonts, assets, CDNs, or libraries.
+ * Reuse: VesperaSnow.mount(canvas, { mode: 'blue-glow' | 'white-tunnel', seed, density, speed })
+ * The animation owns only the canvas passed to it; it does not inject page UI.
+ */
+(function (root) {
+  'use strict';
+  const TAU = Math.PI * 2;
+  const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const smooth = (a, b, x) => { const t = clamp((x-a)/(b-a),0,1); return t*t*(3-2*t); };
+  const randGen = seed => { let s = (seed >>> 0) || 314159265; return () => {s ^= s << 13; s ^= s >>> 17; s ^= s << 5; return (s >>> 0)/4294967296;};};
+  const radial = (rgb, size=96) => {
+    const c=document.createElement('canvas');c.width=c.height=size;const x=c.getContext('2d');const g=x.createRadialGradient(size/2,size/2,0,size/2,size/2,size/2);
+    g.addColorStop(0,`rgba(${rgb},1)`);g.addColorStop(.065,`rgba(${rgb},.88)`);g.addColorStop(.22,`rgba(${rgb},.35)`);g.addColorStop(.54,`rgba(${rgb},.09)`);g.addColorStop(1,`rgba(${rgb},0)`);
+    x.fillStyle=g;x.fillRect(0,0,size,size);return c;
+  };
+  /* Branch geometry: six rotational copies of the same growing ice crystal.
+     Ferns are drawn with secondary side stems, not a plain asterisk sprite. */
+  function iceCrystal(p, family, seed, hue, kind) {
+    const r=randGen(seed),N=family%9===7?8:6;
+    const maxR=109, w=family%3===0?4.2:(family%3===1?3.1:3.75);
+    const stroke=(thick,alpha=1)=>{p.strokeStyle=hue;p.lineWidth=thick;p.globalAlpha=alpha;p.lineCap='round';p.lineJoin='round';};
+    p.save();p.translate(160,160);
+    for(let a=0;a<N;a++){
+      p.save();p.rotate(a*TAU/N + (family%2?.035:0));
+      // Core spine, occasionally segmented by short hex branches.
+      stroke(w+0.15,.94);p.beginPath();p.moveTo(0,0);p.lineTo(maxR,0);p.stroke();
+      const stems=(family%4===0)?6:(family%4===1?4:5);
+      for(let j=0;j<stems;j++){
+        const t=.22 + j*(.62/(stems-1));
+        const base=t*maxR;
+        const len=(.115 + .055*(1-t) + r()*.035)*maxR*(family%5===2?1.25:1);
+        const width=(.10 + .055*r())*maxR;
+        stroke(Math.max(2.15,w-.25-.14*j),.82);
+        for(let sign of [-1,1]){
+          p.beginPath();p.moveTo(base,0);p.lineTo(base+len,sign*width);p.stroke();
+          if((family%4!==1) && (j<4 || family%3===2)){
+            const mx=base+len*.58, my=sign*width*.58;
+            stroke(2.0,.84);p.beginPath();p.moveTo(mx,my);p.lineTo(mx+len*.44,my+sign*width*.42);p.stroke();
+          }
+        }
+      }
+      // Snow fern: densely layered needles build a soft, almost photographic
+      // crystalline silhouette instead of the usual flat asterisk icon.
+      if((family%7===6) || (kind==='white' && family%5===1)){
+        for(let k=0;k<13;k++){
+          const t=.24+k*.056, start=t*maxR;
+          const reach=lerp(15,4.0,k/12);
+          const spread=lerp(19,5,k/12);
+          for(const sign of [-1,1]){
+            stroke(lerp(4.9,2.1,k/12),.82);
+            p.beginPath();p.moveTo(start,sign*2);p.lineTo(start+reach,sign*spread);p.stroke();
+            if(k%2===0){
+              stroke(1.85,.80);p.beginPath();p.moveTo(start+reach*.58,sign*spread*.60);p.lineTo(start+reach*.90,sign*(spread+4));p.stroke();
+            }
+          }
+        }
+      }
+      if(family%5===3 && kind==='white'){
+        for(let k=0;k<7;k++){
+          const t=.34+k*.089;
+          for(const sign of [-1,1]){
+            stroke(lerp(4.4,2.0,k/6),.76);
+            p.beginPath();p.moveTo(t*maxR,0);p.lineTo((t+.092)*maxR,sign*maxR*.115);p.stroke();
+          }
+        }
+      }
+      if(family%3!==0){
+        stroke(2.35,.9);
+        for(const t of [.36,.60,.78]){
+          p.beginPath();p.moveTo(t*maxR,-10);p.lineTo((t+.05)*maxR,0);p.lineTo(t*maxR,10);p.stroke();
+        }
+      }
+      if(family%4===1){
+        stroke(2.1,.82);p.beginPath();p.arc(maxR*.70,0,3.5,0,TAU);p.stroke();
+      }
+      p.restore();
+    }
+    stroke(2.4,.96);p.beginPath();for(let i=0;i<6;i++){const a=i*TAU/6;p.lineTo(Math.cos(a)*14,Math.sin(a)*14);}p.closePath();p.stroke();
+    if(family%2===0){
+      p.beginPath();for(let i=0;i<6;i++){const a=i*TAU/6;p.lineTo(Math.cos(a)*34,Math.sin(a)*34);}p.closePath();p.stroke();
+    }
+    p.restore();p.globalAlpha=1;
+  }
+  function buildFlake(family, seed, kind){
+    const size=320;
+    const base=document.createElement('canvas');base.width=base.height=size;
+    const b=base.getContext('2d');
+    iceCrystal(b,family,seed,kind==='blue'?(family%4===0?'#86b5ff':family%4===1?'#b2d4ff':'#d5efff'):'#ffffff',kind);
+    const out=document.createElement('canvas');out.width=out.height=size;
+    const c=out.getContext('2d');
+    if(kind==='blue'){
+      c.shadowColor='#4f99ff';c.shadowBlur=23;c.globalAlpha=1;c.drawImage(base,0,0);
+      c.shadowBlur=0;c.filter='blur(11px)';c.globalAlpha=1;c.drawImage(base,0,0);
+      c.filter='blur(5px)';c.globalAlpha=.92;c.drawImage(base,0,0);
+      c.filter='none';c.globalAlpha=1;c.drawImage(base,0,0);
+    } else {
+      c.filter='blur(3px)';c.globalAlpha=.60;c.drawImage(base,0,0);
+      c.filter='none';c.globalAlpha=1;c.drawImage(base,0,0);
+    }
+    return out;
+  }
+  class SnowScene {
+    constructor(canvas,opts={}){
+      if (!(canvas instanceof HTMLCanvasElement)) throw new TypeError('Expected <canvas>');
+      this.canvas=canvas;this.ctx=canvas.getContext('2d',{alpha:false});
+      this.opts={mode:opts.mode==='white-tunnel'?'white-tunnel':'blue-glow', seed:opts.seed??1230717, density:clamp(Number(opts.density??1),.3,2),speed:clamp(Number(opts.speed??1),.2,2.5),quality:opts.quality||'auto'};
+      this.rand=randGen(this.opts.seed);this.white=this.opts.mode==='white-tunnel';this.w=1;this.h=1;this.dpr=1;
+      this.sprites=Array.from({length:this.white?15:17},(_,i)=>buildFlake(i,1003+i*1237,this.white?'white':'blue'));
+      this.bokeh=radial(this.white?'255,255,255':'197,219,255');this.blueHalo=radial('85,138,236');
+      this.sky=null;this.stars=[];this.flakes=[];this.dust=[];this.phase=0;this.elapsed=0;this.last=0;this.frame=0;
+      this.running=false;this.destroyed=false;
+      this.reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+      this.onResize=this.resize.bind(this);this.onVisibility=()=>{if(!document.hidden){this.last=0; if(!this.running)this.start();} else this.pause();};
+      if(typeof ResizeObserver!=='undefined'){this.observer=new ResizeObserver(this.onResize);this.observer.observe(canvas);} else window.addEventListener('resize',this.onResize);
+      document.addEventListener('visibilitychange',this.onVisibility);
+      this.resize();this.start();
+    }
+    resize(){
+      if(this.destroyed)return;
+      const r=this.canvas.getBoundingClientRect();const oldW=this.w,oldH=this.h;
+      this.w=Math.max(1,Math.round(r.width||innerWidth));this.h=Math.max(1,Math.round(r.height||innerHeight));
+      this.dpr=this.opts.quality==='high'?Math.min(devicePixelRatio||1,2.25):Math.min(devicePixelRatio||1,2);
+      this.canvas.width=Math.round(this.w*this.dpr);this.canvas.height=Math.round(this.h*this.dpr);
+      this.ctx.setTransform(this.dpr,0,0,this.dpr,0,0);
+      this.ctx.imageSmoothingEnabled=true;this.ctx.imageSmoothingQuality='high';
+      if(oldW===1||oldH===1||!this.flakes.length){this.init();}
+      else if(!this.white){for(const p of [...this.flakes,...this.stars]){p.x*=this.w/oldW;p.y*=this.h/oldH;}}
+      this.draw();
+    }
+    init(){if(this.white)this.initWhite();else this.initBlue();}
+    initBlue(){
+      const r=this.rand,w=this.w,h=this.h,a=Math.min(w*h/(1280*720),1.3);
+      this.flakes=[];this.stars=[];
+      const count=Math.round((a<.65?22:25)*this.opts.density);
+      for(let i=0;i<count;i++){
+        const deep=r(), big=deep>.44;
+        const size=(big?lerp(93,240,r()):lerp(29,110,r()))*Math.min(1.22,Math.sqrt(w*h/(1280*720))+.35);
+        this.flakes.push({x:r()*w,y:r()*h,size,angle:r()*TAU,vx:lerp(-12,12,r()),vy:lerp(6,22,r()),rv:(r()-.5)*.12,
+          opacity:lerp(.48,1,r())*(big?1:.85),phase:r()*TAU,shimmer:lerp(.16,.38,r()),sprite:Math.floor(r()*this.sprites.length)});
+      }
+      for(let i=0;i<Math.round((a<.65?74:78)*this.opts.density);i++){
+        this.stars.push({x:r()*w,y:r()*h,size:lerp(2.1,8.2,Math.pow(r(),1.6)),vy:lerp(4,18,r()),vx:lerp(-4,6,r()),phase:r()*TAU,alpha:lerp(.56,1,r())});
+      }
+    }
+    initWhite(){
+      const r=this.rand,a=Math.min(this.w*this.h/(1280*720),1.2);
+      this.flakes=[];this.dust=[];this.elapsed=0;
+      const total=Math.round((a<.52?155:255)*this.opts.density);
+      const dots=Math.round((a<.52?310:530)*this.opts.density);
+      const add=(kind)=>{const z=lerp(.24,5.2,Math.pow(r(),.67));return {x:(r()-.5)*3.4,y:(r()-.5)*2.1,z,seed:r(),radius:kind==='dot'?lerp(.7,2.8,r()):lerp(8,29,Math.pow(r(),1.3)),angle:r()*TAU,spin:(r()-.5)*1.2,sprite:Math.floor(r()*this.sprites.length),opacity:lerp(.68,1,r()),kind};};
+      for(let i=0;i<total;i++)this.flakes.push(add('flake'));
+      for(let i=0;i<dots;i++)this.dust.push(add('dot'));
+    }
+    start(){if(this.destroyed||this.running)return;this.running=true;this.last=0;this.raf=requestAnimationFrame(this.tick.bind(this));}
+    pause(){if(!this.running)return;this.running=false;cancelAnimationFrame(this.raf);this.last=0;}
+    tick(time){if(!this.running)return;const dt=this.last?Math.min((time-this.last)/1000,.055):0;this.last=time;if(!this.reduced)this.step(dt*this.opts.speed);this.draw();this.raf=requestAnimationFrame(this.tick.bind(this));}
+    step(dt){this.elapsed+=dt;this.phase+=dt; if(this.white)this.moveWhite(dt);else this.moveBlue(dt);}
+    moveBlue(dt){
+      const w=this.w,h=this.h;
+      for(const p of this.flakes){p.x+=(p.vx+Math.sin(this.phase*.43+p.phase)*3)*dt;p.y+=p.vy*dt;p.angle+=p.rv*dt;
+        if(p.y>h+p.size*.55){p.y=-p.size*.7;p.x=this.rand()*w;}
+        if(p.x<-p.size*.8)p.x=w+p.size*.5;if(p.x>w+p.size*.8)p.x=-p.size*.5;
+      }
+      for(const p of this.stars){p.x+=p.vx*dt;p.y+=p.vy*dt;if(p.y>h+12){p.y=-12;p.x=this.rand()*w;}}
+    }
+    moveWhite(dt){
+      const r=this.rand;
+      const speed=.22+(smooth(3.4,7.5,(this.elapsed%14))*.40);
+      for(const p of [...this.flakes,...this.dust]){
+        p.z-=dt*speed*(p.kind==='dot'?.84:1);
+        p.angle+=p.spin*dt*.19;
+        if(p.z<.13){p.z=5.15+r()*.35;p.x=(r()-.5)*3.4;p.y=(r()-.5)*2.1;}
+      }
+    }
+    drawBackground(){
+      const c=this.ctx,w=this.w,h=this.h;
+      c.fillStyle=this.white?'#000000':'#02030c';c.fillRect(0,0,w,h);
+      if(!this.white){
+        const g=c.createRadialGradient(w*.63,h*.38,4,w*.56,h*.41,Math.max(w,h)*.62);
+        g.addColorStop(0,'rgba(7,15,41,.28)');g.addColorStop(.5,'rgba(6,9,25,.10)');g.addColorStop(1,'rgba(1,2,7,0)');c.fillStyle=g;c.fillRect(0,0,w,h);
+      }
+    }
+    draw(){if(this.destroyed)return;const c=this.ctx,w=this.w,h=this.h;this.drawBackground();
+      if(this.white)this.drawWhite(c,w,h);else this.drawBlue(c,w,h);
+    }
+    drawSprite(c,canvas,x,y,size,angle,alpha){if(alpha<=.004||size<=.2)return;c.save();c.globalAlpha=clamp(alpha,0,1);c.translate(x,y);c.rotate(angle);c.drawImage(canvas,-size/2,-size/2,size,size);c.restore();}
+    drawBlue(c,w,h){
+      c.globalCompositeOperation='screen';
+      // Gentle distant points, almost no directional travel: glowing stars among crystals.
+      for(const p of this.stars){const pulse=.74+.26*Math.sin(this.phase*1.3+p.phase);const sz=clamp(p.size*5.4,12,55);
+        this.drawSprite(c,this.bokeh,p.x,p.y,sz,0,p.alpha*pulse);
+        c.globalAlpha=clamp(p.alpha*pulse,.25,1);c.fillStyle='#e4eeff';c.beginPath();c.arc(p.x,p.y,Math.max(.45,p.size*.19),0,TAU);c.fill();c.globalAlpha=1;
+      }
+      for(const p of this.flakes){const pulse=1+p.shimmer*Math.sin(this.phase*.8+p.phase),size=p.size*(.99+.025*Math.sin(this.phase*.67+p.phase));
+        if(size>70)this.drawSprite(c,this.blueHalo,p.x,p.y,size*1.75,0,Math.min(.34,p.opacity*.28));
+        this.drawSprite(c,this.sprites[p.sprite],p.x,p.y,size,p.angle,p.opacity*pulse);
+      }
+      c.globalCompositeOperation='source-over';c.globalAlpha=1;
+    }
+    project(p,w,h){return {x:w/2 + p.x*(w*.58)/p.z, y:h/2+p.y*(h*.97)/p.z,z:p.z};}
+    drawWhite(c,w,h){
+      const period=this.elapsed%14;
+      // During the later phrase, a soft central cloud of tiny drifting ice crystals forms.
+      const cloud=smooth(4.8,7.8,period)*(1-smooth(10.5,13.4,period));
+      if(cloud>.002){const g=c.createRadialGradient(w*.5,h*.48,1,w*.5,h*.48,Math.min(w,h)*.52);
+        g.addColorStop(0,`rgba(180,185,194,${(.11*cloud).toFixed(3)})`);g.addColorStop(.42,`rgba(170,180,190,${(.035*cloud).toFixed(3)})`);g.addColorStop(1,'rgba(190,200,210,0)');c.fillStyle=g;c.fillRect(0,0,w,h);
+      }
+      c.globalCompositeOperation='screen';
+      for(const p of this.dust){const pt=this.project(p,w,h);if(pt.x < -20 || pt.y < -20||pt.x>w+20||pt.y>h+20)continue;
+        const size=clamp(p.radius*4.7/p.z,.4,13);this.drawSprite(c,this.bokeh,pt.x,pt.y,Math.max(4,size*4.2),0,p.opacity*.88);
+        c.globalAlpha=p.opacity;c.fillStyle='#eeeeee';c.beginPath();c.arc(pt.x,pt.y,clamp(size*.24,.4,2.0),0,TAU);c.fill();c.globalAlpha=1;
+      }
+      for(const p of this.flakes){const pt=this.project(p,w,h),size=clamp(p.radius*6.1/p.z,.8,190);
+        if(pt.x < -size*.6||pt.y < -size*.6||pt.x > w+size*.6||pt.y>h+size*.6)continue;
+        // Near-camera flakes blur naturally; far flakes are slender, crisp crystals.
+        const sprite=this.sprites[p.sprite];
+        this.drawSprite(c,sprite,pt.x,pt.y,size,p.angle,p.opacity*clamp(1.2-p.z*.095,.38,1));
+      }
+      const heroIn=smooth(.9,2.5,period),heroOut=1-smooth(5.5,7.0,period),alpha=heroIn*heroOut;
+      if(alpha>.005){
+        const size=lerp(115,330,smooth(1.8,5.2,period))*Math.min(1.2,w/950);
+        const y=h*.46 + Math.sin(period*.4)*h*.055,x=w*.50+Math.sin(period*.51)*w*.035;
+        this.drawSprite(c,this.sprites[6],x,y,size,period*.033,alpha*.94);
+      }
+      c.globalCompositeOperation='source-over';c.globalAlpha=1;
+    }
+    setOptions(newOpts={}){if(newOpts.speed!==undefined)this.opts.speed=clamp(+newOpts.speed,.2,2.5);if(newOpts.density!==undefined){this.opts.density=clamp(+newOpts.density,.3,2);this.init();}}
+    destroy(){if(this.destroyed)return;this.destroyed=true;this.pause();this.observer?.disconnect();window.removeEventListener('resize',this.onResize);document.removeEventListener('visibilitychange',this.onVisibility);}
+  }
+  root.VesperaSnow={mount:(canvas,options)=>new SnowScene(canvas,options),version:'1.0.0'};
+})(window);
