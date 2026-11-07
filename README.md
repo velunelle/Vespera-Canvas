@@ -22,6 +22,7 @@ Velunelle 的前端设计资产库：保存**认可过的视觉模块、动效�
 
 - [SN-001 冰蓝星辉](effects/SN-001-blue-glow/index.html)：蓝色发光冰晶缓慢飘浮，来源参考视频 `1000215481.mp4`。
 - [SN-002 雪晶穿梭](effects/SN-002-white-tunnel/index.html)：黑白雪晶穿梭与中心透视，来源参考视频 `1000215482.mp4`。
+- [SN-002-M 已认可的迎面穿梭运动](effects/SN-002-white-tunnel/MOTION_APPROVED.md)：保留空间透视与运动；黑色背景和雪晶质感尚待优化。
 - [共享 Canvas 引擎](effects/shared/snow-engine.js) · [使用及测试说明](effects/SNOW_README.md)。
 
 两款独立 HTML 已上传完整代码；不依赖外部字体、图片或插件。浏览器模拟测试通过，尚未获得用户视觉验收，不标记为最终认可效果。
