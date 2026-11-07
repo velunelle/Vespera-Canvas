@@ -24,3 +24,11 @@
 - [打开之前的纯黑版](versions/v1.0.0-original.html)：旧版长期保留，可随时对比。
 - [v1.1.0 可复用引擎](../shared/snow-engine.v1.1.0.js)：加入六枝冰晶半透明晶面、白色边缘反射和程序化冷雾层。
 - v1.1 属于美术调整候选，不自动取代 SN-002-M 的已认可运动资产；不标记为通过审美验收。
+
+## v1.2.0 细枝晶与冬雾（待用户视觉验收）
+
+- [独立网页（所有素材内嵌）](versions/v1.2.0-crystal-mist.html)，可直接在手机 Chrome 预览。
+- [透明雪晶图集](versions/v1.2.0-assets/snowflakes-atlas.webp)：16片不同的细长冰晶，保留透明通道，便于后续替换和重组。
+- [冬夜冷雾背景](versions/v1.2.0-assets/winter-mist-background.webp)及[雾气层1](versions/v1.2.0-assets/fog-layer-1.png)、[雾气层2](versions/v1.2.0-assets/fog-layer-2.png)。
+- 动画保留已有 `z` 递减、`x/z`、`y/z` 透视和错层飞近；新版减少中景数量，对近景冰晶增加轻微虚化，对冷雾施加缓慢漂移。
+- 此版经模拟手机(393×852)、桌面(1440×900)浏览器检查：素材加载成功，未见脚本错误；尚未由用户审美验收。原v1.0、v1.1均保留。
