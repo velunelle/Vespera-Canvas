@@ -27,6 +27,8 @@ Velunelle 的前端设计资产库：保存**认可过的视觉模块、动效�
 
 - [SN-002 v1.1 冬雾冰晶预览](effects/SN-002-white-tunnel/versions/v1.1.0-cold-fog.html)：新增半透明晶面和冷雾背景，仅作为待验收版本；[v1.0 原版](effects/SN-002-white-tunnel/versions/v1.0.0-original.html) 已完整保留。
 
+- [SN-002 v1.2 细枝冰晶与冬雾网页预览](effects/SN-002-white-tunnel/versions/v1.2.0-crystal-mist.html)：16款细枝晶、深蓝夜雾、近景适度虚化和既有迎面穿梭运动；[独立图片资产](effects/SN-002-white-tunnel/versions/v1.2.0-assets/)另存，可复用。此版手机/桌面模拟浏览器自检通过，用户审美待验收。
+
 两款独立 HTML 已上传完整代码；不依赖外部字体、图片或插件。浏览器模拟测试通过，尚未获得用户视觉验收，不标记为最终认可效果。
 
 ## 使用规则
