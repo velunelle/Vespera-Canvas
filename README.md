@@ -25,6 +25,8 @@ Velunelle 的前端设计资产库：保存**认可过的视觉模块、动效�
 - [SN-002-M 已认可的迎面穿梭运动](effects/SN-002-white-tunnel/MOTION_APPROVED.md)：保留空间透视与运动；黑色背景和雪晶质感尚待优化。
 - [共享 Canvas 引擎](effects/shared/snow-engine.js) · [使用及测试说明](effects/SNOW_README.md)。
 
+- [SN-002 v1.1 冬雾冰晶预览](effects/SN-002-white-tunnel/versions/v1.1.0-cold-fog.html)：新增半透明晶面和冷雾背景，仅作为待验收版本；[v1.0 原版](effects/SN-002-white-tunnel/versions/v1.0.0-original.html) 已完整保留。
+
 两款独立 HTML 已上传完整代码；不依赖外部字体、图片或插件。浏览器模拟测试通过，尚未获得用户视觉验收，不标记为最终认可效果。
 
 ## 使用规则
