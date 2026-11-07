@@ -148,15 +148,15 @@
       "description": "黑白雪晶向镜头靠近，出现大雪晶和纵深穿梭效果",
       "module": "动态雪景",
       "source": "effects/SN-002-white-tunnel/index.html",
-      "verification": "运动已认可；v1.4真黑背景、原版细枝雪晶、动态生成流动雾气已完成模拟浏览器测试，待用户审美验收",
+      "verification": "v1.0运动节奏与近景放大用户认可；v1.5高清结晶材质+纯黑无雾已模拟浏览器测试，待用户审美验收",
       "reference": "用户提供的动画视频；原始程序化重绘",
       "reference_file": "1000215482.mp4",
       "reuse": "effects/shared/snow-engine.js",
-      "candidate_version": "v1.4.0-true-black-living-fog",
-      "candidate_preview": "effects/SN-002-white-tunnel/versions/v1.4.0-true-black-living-fog.html",
+      "candidate_version": "v1.5.0-macro-ice",
+      "candidate_preview": "effects/SN-002-white-tunnel/versions/v1.5.0-macro-ice.html",
       "approved_motion": "SN-002-M",
-      "asset_directory": "effects/SN-002-white-tunnel/versions/v1.2.0-assets/",
-      "asset_note": "使用原v1.2纤细冰晶图集内嵌；雾气由程序动态生成，不依赖静态雾图"
+      "asset_directory": "effects/SN-002-white-tunnel/versions/v1.5.0-assets/",
+      "asset_note": "16种透明雪晶纹理（v1.3形态的高清增强），768px/格；v1.0运动曲线未经调整"
     },
     {
       "id": "SN-002-M",
