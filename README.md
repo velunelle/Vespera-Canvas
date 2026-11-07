@@ -18,6 +18,14 @@ Velunelle 的前端设计资产库：保存**认可过的视觉模块、动效�
 - [SK-001 夜雨城 Skill](skills/SK-001-night-rain-city.md)：记录它是什么、官方源地址、使用方法，以及《第二个圣诞夜》新旧版本的源码入口。此项目暂不重复拆解动效组件。
 - [Skill 简表](skills/skill-index.csv)：可直接用 WPS 查看、编辑，适合继续增加下一个 Skill。
 
+## 第三批资产：Snow Studies（原创复现）
+
+- [SN-001 冰蓝星辉](effects/SN-001-blue-glow/index.html)：蓝色发光冰晶缓慢飘浮，来源参考视频 `1000215481.mp4`。
+- [SN-002 雪晶穿梭](effects/SN-002-white-tunnel/index.html)：黑白雪晶穿梭与中心透视，来源参考视频 `1000215482.mp4`。
+- [共享 Canvas 引擎](effects/shared/snow-engine.js) · [使用及测试说明](effects/SNOW_README.md)。
+
+两款独立 HTML 已上传完整代码；不依赖外部字体、图片或插件。浏览器模拟测试通过，尚未获得用户视觉验收，不标记为最终认可效果。
+
 ## 使用规则
 
 1. 先按资产编号查询对应源码，不重新搜索相同效果。
