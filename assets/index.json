@@ -148,10 +148,20 @@
       "description": "黑白雪晶向镜头靠近，出现大雪晶和纵深穿梭效果",
       "module": "动态雪景",
       "source": "effects/SN-002-white-tunnel/index.html",
-      "verification": "已完成运行测试；待用户审美验收",
+      "verification": "运动已获用户认可；背景氛围与雪晶美术待优化",
       "reference": "用户提供的动画视频；原始程序化重绘",
       "reference_file": "1000215482.mp4",
       "reuse": "effects/shared/snow-engine.js"
+    },
+    {
+      "id": "SN-002-M",
+      "name": "雪晶迎面穿梭",
+      "description": "雪花从远处朝镜头靠近，逐渐放大并向四周掠过的伪三维透视运动",
+      "module": "动效（已认可）",
+      "source": "effects/SN-002-white-tunnel/MOTION_APPROVED.md",
+      "verification": "手机实看后用户认可运动与空间感；背景及雪晶材质待优化",
+      "reuse": "effects/shared/snow-engine.js",
+      "parent": "SN-002"
     }
   ]
 }
