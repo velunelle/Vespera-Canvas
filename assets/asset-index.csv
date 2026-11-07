@@ -16,5 +16,5 @@
 "M-005","上滑整页退出","手指上滑时开场整体上移淡出，松手后提交或回弹","手势","src/opening/opening.js + src/ui/motion.js","已核实",""
 "M-006","贴纸浮动星星闪烁","贴纸缓慢浮动、星星忽明忽暗","装饰动效","sticker-float, twinkle","已核实",""
 "SN-001","冰蓝星辉","蓝白发光的六角雪晶缓慢漂浮，周围有柔和星点","动态雪景","effects/SN-001-blue-glow/index.html","已完成运行测试；待用户审美验收",""
-"SN-002","雪晶穿梭","黑白雪晶向镜头靠近，出现大雪晶和纵深穿梭效果","动态雪景","effects/SN-002-white-tunnel/versions/v1.2.0-crystal-mist.html","保留已认可动效；v1.2.0 冷雾冰晶待用户审美验收",""
+"SN-002","雪晶穿梭","黑白雪晶向镜头靠近，出现大雪晶和纵深穿梭效果","动态雪景","effects/SN-002-white-tunnel/versions/v1.3.0-dark-mist-crisp.html","保留已认可动效；v1.3 深黑薄雾+清晰冰晶待用户验收",""
 "SN-002-M","雪晶迎面穿梭","远处雪晶向镜头靠近，变大并从画面四周掠过","已认可动效","effects/SN-002-white-tunnel/MOTION_APPROVED.md","运动已认可；背景和雪晶美术待优化",""
