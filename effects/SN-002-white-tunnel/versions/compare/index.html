@@ -1,0 +1,33 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>SN-002 · 全版本对照</title><meta name="theme-color" content="#111313"><style>
+:root{color-scheme:dark;font-family:system-ui,"PingFang SC","Microsoft YaHei",sans-serif}*{box-sizing:border-box}body{margin:0;background:#0d1010;color:#edece8;font-size:14px}main{max-width:780px;margin:0 auto;padding:26px 16px 90px}
+small{color:#aab7bb}h1{font-size:29px;margin:10px 0 12px;line-height:1.2}p{color:#afbbbe;line-height:1.7}header{padding-bottom:16px;border-bottom:1px solid #30383b}
+section{background:#171c1e;border:1px solid #323c40;margin:10px 0;border-radius:12px;padding:15px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ver{font-weight:700;font-size:13px;color:#bbced3}.name{font-size:17px;font-weight:600;margin-top:4px}.desc{color:#9dabb0;font-size:12px;margin-top:4px}
+.action{display:flex;gap:10px;margin-top:13px}a{background:#e1e8e9;color:#13191a;text-decoration:none;padding:11px;text-align:center;border-radius:8px;flex:1;font-weight:700}
+select,textarea,button{font:inherit;border:1px solid #455459;border-radius:8px;background:#222c30;color:#ecf0ef}select{padding:8px;width:120px}
+textarea{display:block;width:100%;margin-top:10px;padding:10px;resize:vertical;min-height:53px}
+button{cursor:pointer;padding:12px}.footer{position:sticky;bottom:0;display:flex;gap:9px;background:#0d1010eb;padding:12px 0;border-top:1px solid #374045}.footer button:first-child{background:#dfe8e8;color:#111819;flex:1;font-weight:700}
+.note{border:1px solid #344044;background:#131a1c;padding:12px;border-radius:9px;font-size:12px}
+</style></head><body><main><header><small>VESPERA CANVAS / SN-002</small><h1>雪晶穿梭 · 全版本对照</h1><p>共13个历史版本。v1.8已按要求删除。打开各版观看后，选择保留、待优化或建议删除，并在下面写批注。评价自动保存在当前浏览器，可以复制带回聊天。</p><p class="note">建议重点比较 v1.0、v1.3、v1.5、v2.2 和 v2.3；早期 v1.1、v1.2 仅作历史对照。请观察一个完整节奏周期，特别是慢动作时的大冰晶位置。</p></header>
+<div id="items"></div><p><small>本页只提供比较和收集批注，不表示任何版本已通过最终验收。正式可复用模块将在选定版本后拆分整理。</small></p>
+<div class="footer"><button id="copy">复制已填写的批注</button><button id="clear">清空批注</button></div></main><script>
+const versions=[["v1.0","v1.0.0-original.html","初版穿梭，近景节奏参照"],["v1.1","v1.1.0-cold-fog.html","冷雾与旧动态，曾评价配色偏蓝"],["v1.2","v1.2.0-crystal-mist.html","细枝晶、偏蓝冬雾；低优先级"],["v1.3","v1.3.0-dark-mist-crisp.html","较好的快慢运动与冰晶形态"],["v1.4","v1.4.0-true-black-living-fog.html","纯黑底、动态雾气"],["v1.5","v1.5.0-macro-ice.html","微距冰晶，文件约4MB"],["v1.6","v1.6.0-charcoal-mist-rhythm.html","黑灰雾及节奏实验"],["v1.7","v1.7.0-crystal-depth-charcoal-fog.html","冰晶边缘和反光实验"],["v1.9","v1.9.0-crystal-nightfall-balance.html","星点、小雪背景"],["v2.0","v2.0.0-balanced-3d-drift.html","中间密度、少量立体翻转"],["v2.1","v2.1.0-crystal-passage-balanced.html","分层补充、动态变化"],["v2.2","v2.2.0-v13-rhythm-visible-snow.html","v1.3速度曲线与背景小雪"],["v2.3","v2.3.0-slow-motion-closeup.html","慢镜头与贴脸冰晶同步"]];
+const root=document.getElementById('items');
+let state={};try{state=JSON.parse(localStorage.getItem('sn002-versions-review')||'{}')}catch(e){}
+function save(){const out={};document.querySelectorAll('section[data-v]').forEach(el=>{out[el.dataset.v]={value:el.querySelector('select').value,text:el.querySelector('textarea').value}});try{localStorage.setItem('sn002-versions-review',JSON.stringify(out))}catch(e){}}
+for(const [version,filename,description] of versions){
+ const el=document.createElement('section');el.dataset.v=version;
+ const top=document.createElement('div');top.className='top';const heading=document.createElement('div');
+ for(const [cls,text] of [['ver',version],['name',version+' · 动态预览'],['desc',description]]){const d=document.createElement('div');d.className=cls;d.textContent=text;heading.append(d)}top.append(heading);el.append(top);
+ const action=document.createElement('div');action.className='action';const a=document.createElement('a');a.href='/'+filename;a.target='_blank';a.rel='noopener';a.textContent='打开 '+version;action.append(a);
+ const select=document.createElement('select');select.setAttribute('aria-label',version+' 选择');for(const [key,label] of [['unsure','待比较'],['keep','保留'],['improve','待优化'],['delete','建议删除']]){const op=document.createElement('option');op.value=key;op.textContent=label;select.append(op)}select.value=state[version]?.value||'unsure';select.onchange=save;action.append(select);el.append(action);
+ const textarea=document.createElement('textarea');textarea.placeholder='这里写节奏、密度、材质、背景等批注';textarea.setAttribute('aria-label',version+' 批注');textarea.value=state[version]?.text||'';textarea.oninput=save;el.append(textarea);root.append(el);
+}
+document.getElementById('copy').onclick=async()=>{
+ const lines=['SN-002 用户版本批注'];let n=0;
+ for(const el of root.querySelectorAll('section[data-v]')){const sel=el.querySelector('select'),note=el.querySelector('textarea').value.trim();if(sel.value==='unsure'&&!note)continue;n++;lines.push(el.dataset.v+'｜'+sel.options[sel.selectedIndex].text+(note?'｜'+note:''))}
+ if(!n)lines.push('尚未填写内容');const value=lines.join('\n');try{await navigator.clipboard.writeText(value);document.getElementById('copy').textContent='已复制，返回聊天粘贴即可'}catch(e){window.prompt('请复制批注',value)}
+};
+document.getElementById('clear').onclick=()=>{if(!confirm('确定清空全部批注？'))return;try{localStorage.removeItem('sn002-versions-review')}catch(e){}location.reload()};
+</script></body></html>
