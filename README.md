@@ -22,7 +22,8 @@ Velunelle 的前端设计资产库：保存**认可过的视觉模块、动效�
 
 - [SN-001 冰蓝星辉](effects/SN-001-blue-glow/index.html)：独立蓝色飘雪参考。
 - [SN-002 雪晶穿梭](effects/SN-002-white-tunnel/versions/index.html)：历史版本与当前实验版。
-- [SN-002 全版本审美批注](effects/SN-002-white-tunnel/VERSION_REVIEW.md)：**以用户 2026-11-08 最新批注为唯一审美判定**，7 版被点名淘汰，保留 v1.0、v1.1、v1.3、v1.4、v2.2、v2.3 及未验收 v2.4。
+- [SN-002 全版本目录](effects/SN-002-white-tunnel/VERSION_CATALOG.md)：现存15个可试玩历史版本，当前暂用 v3.2；继续由用户集中批注，未确认前不删除。
+- [SN-002 旧批注及研发记录](effects/SN-002-white-tunnel/VERSION_REVIEW.md)：此前反馈与 v2.9–v3.2 的迭代问题。
 - [SN-002 v1.0 运动基准](effects/SN-002-white-tunnel/MOTION_APPROVED.md)：包含速度与淡入、放大、淡出的近景编排，不可只复制公式。
 - [独立冰晶素材与参数](effects/SN-002-white-tunnel/assets/ice-crystals-v2.3.json)：后期素材已经单独冻结，不会随实验版删除。
 - [手机端版本对照网页](https://vespera-canvas-sn002.vercel.app/compare/)：逐版观看并填写批注；正式版仍待用户验收。
