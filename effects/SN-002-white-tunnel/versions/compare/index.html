@@ -16,6 +16,7 @@ const versions=[["v1.0","v1.0.0-original.html","动效节奏依然最好；雪�
 versions.push(["v2.9","v2.9.0-immersive-corridor.html","候选：全屏分布、两次明显快穿梭、近景连续掠过、半透明微光雪点；尚待用户验收"]);
 versions.push(["v3.0","v3.0.0-persistent-fullscreen-snow.html","v2.9 保留，修复长时间雪花变稀：远中近深度循环保持密度，12 区域均匀覆盖；待用户验收"]);
 versions.push(["v3.1","v3.1.0-cinematic-diagonal-snow.html","开场少量减密，快镜头减速缩短，慢镜头增加从右向左下方飘过的连续冰晶；待验收"]);
+versions.push(["v3.2","v3.2.0-natural-falling-snow.html","取消斜落冰晶的固定循环，改为各自受重力、风和空气阻力影响；开场 1–2 秒减少雪花遮挡，后段雪量不变（待验收）"]);
 const root=document.getElementById('items');
 let state={};try{state=JSON.parse(localStorage.getItem('sn002-versions-review-20261108')||'{}')}catch(e){}
 function save(){const out={};document.querySelectorAll('section[data-v]').forEach(el=>{out[el.dataset.v]={value:el.querySelector('select').value,text:el.querySelector('textarea').value}});try{localStorage.setItem('sn002-versions-review-20261108',JSON.stringify(out))}catch(e){}}
