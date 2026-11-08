@@ -18,33 +18,15 @@ Velunelle 的前端设计资产库：保存**认可过的视觉模块、动效�
 - [SK-001 夜雨城 Skill](skills/SK-001-night-rain-city.md)：记录它是什么、官方源地址、使用方法，以及《第二个圣诞夜》新旧版本的源码入口。此项目暂不重复拆解动效组件。
 - [Skill 简表](skills/skill-index.csv)：可直接用 WPS 查看、编辑，适合继续增加下一个 Skill。
 
-## 第三批资产：Snow Studies（原创复现）
+## 第三批资产：Snow Studies（原创动效复现）
 
-- [SN-001 冰蓝星辉](effects/SN-001-blue-glow/index.html)：蓝色发光冰晶缓慢飘浮，来源参考视频 `1000215481.mp4`。
-- [SN-002 雪晶穿梭](effects/SN-002-white-tunnel/index.html)：黑白雪晶穿梭与中心透视，来源参考视频 `1000215482.mp4`。
-- [SN-002-M 已认可的迎面穿梭运动](effects/SN-002-white-tunnel/MOTION_APPROVED.md)：保留空间透视与运动；黑色背景和雪晶质感尚待优化。
-- [共享 Canvas 引擎](effects/shared/snow-engine.js) · [使用及测试说明](effects/SNOW_README.md)。
-
-- [SN-002 v1.1 冬雾冰晶预览](effects/SN-002-white-tunnel/versions/v1.1.0-cold-fog.html)：新增半透明晶面和冷雾背景，仅作为待验收版本；[v1.0 原版](effects/SN-002-white-tunnel/versions/v1.0.0-original.html) 已完整保留。
-
-- [SN-002 v1.2 细枝冰晶与冬雾网页预览](effects/SN-002-white-tunnel/versions/v1.2.0-crystal-mist.html)：16款细枝晶、深蓝夜雾、近景适度虚化和既有迎面穿梭运动；[独立图片资产](effects/SN-002-white-tunnel/versions/v1.2.0-assets/)另存，可复用。此版手机/桌面模拟浏览器自检通过，用户审美待验收。
-
-两款独立 HTML 已上传完整代码；不依赖外部字体、图片或插件。浏览器模拟测试通过，尚未获得用户视觉验收，不标记为最终认可效果。
-
-- [SN-002 v1.3 深黑薄雾·清晰冰晶](effects/SN-002-white-tunnel/versions/v1.3.0-dark-mist-crisp.html)：移除偏亮的插画背景和雪花模糊，恢复接近旧版的雪花密度，并将细枝晶稍微加粗提亮；旧版保留。测试状态：模拟手机与桌面浏览器运行无脚本错误，用户审美待验收。
-
-- [SN-002 v1.4 真黑背景·动态薄雾·细枝雪晶](effects/SN-002-white-tunnel/versions/v1.4.0-true-black-living-fog.html)：背景为 #000000，恢复 v1.2 原始细线雪晶；雾气由持续更新的噪声流场生成，非静态图片平移。模拟手机和桌面浏览器测试通过；用户审美待验收。旧版均保留。
-
-- [SN-002 v1.5 微距冰晶·纯黑穿梭](effects/SN-002-white-tunnel/versions/v1.5.0-macro-ice.html)：严格复用 v1.0 的节奏曲线、贴脸时机和放大幅度；无雾气、纯黑底，使用经微纹理增强的 v1.3 雪晶形态和高清透明图集，待用户美术验收。
-
-
-## SN-002 版本复查与归档（2026-11-08）
-
-截至当前，SN-002 保留 13 个版本（v1.0–v2.3，v1.8 已依用户要求删除）。详细版本表、每一版可播放链接、用户批注待办及目录整理情况，见 [VERSION_REVIEW.md](effects/SN-002-white-tunnel/VERSION_REVIEW.md)。
-
-- [手机端全版本比较与批注页面](https://vespera-canvas-sn002.vercel.app/compare/)
-- [当前试验网页](https://vespera-canvas-sn002.vercel.app/)
-- **当前仍待用户逐版审定**。上文 v1.0–v1.5 的“待验收”记录是历史开发记录，不代表最终推荐版或最新进度。请勿擅自覆盖旧版或把尚未确认的候选标记为正式可复用组件。
+- [SN-001 冰蓝星辉](effects/SN-001-blue-glow/index.html)：独立蓝色飘雪参考。
+- [SN-002 雪晶穿梭](effects/SN-002-white-tunnel/versions/index.html)：历史版本与当前实验版。
+- [SN-002 全版本审美批注](effects/SN-002-white-tunnel/VERSION_REVIEW.md)：**以用户 2026-11-08 最新批注为唯一审美判定**，7 版被点名淘汰，保留 v1.0、v1.1、v1.3、v1.4、v2.2、v2.3 及未验收 v2.4。
+- [SN-002 v1.0 运动基准](effects/SN-002-white-tunnel/MOTION_APPROVED.md)：包含速度与淡入、放大、淡出的近景编排，不可只复制公式。
+- [独立冰晶素材与参数](effects/SN-002-white-tunnel/assets/ice-crystals-v2.3.json)：后期素材已经单独冻结，不会随实验版删除。
+- [手机端版本对照网页](https://vespera-canvas-sn002.vercel.app/compare/)：逐版观看并填写批注；正式版仍待用户验收。
+- [共享 Canvas 引擎](effects/shared/snow-engine.js)、[背景说明](effects/SNOW_README.md)。
 
 ## 使用规则
 
