@@ -1,0 +1,76 @@
+{
+  "source_version": "v2.3.0",
+  "snapshot": "preserve even if v2.1 or other iterations are deleted",
+  "sprite_atlas": {
+    "path": "assets/ice-crystals-v2.3.webp",
+    "width": 1024,
+    "height": 1024,
+    "grid": [
+      4,
+      4
+    ],
+    "tile": [
+      256,
+      256
+    ],
+    "format": "webp"
+  },
+  "quality": {
+    "max_device_pixel_ratio": 3
+  },
+  "tiers": {
+    "near": {
+      "count": 7,
+      "minZ": 0.57,
+      "maxZ": 2,
+      "diameter": [
+        110,
+        150
+      ]
+    },
+    "mid": {
+      "count": 37,
+      "minZ": 1.22,
+      "maxZ": 3.65,
+      "diameter": [
+        88,
+        141
+      ]
+    },
+    "far": {
+      "count": 60,
+      "minZ": 2.7,
+      "maxZ": 6.2,
+      "diameter": [
+        67,
+        115
+      ]
+    }
+  },
+  "particles": {
+    "stars": 140,
+    "falling": 200,
+    "dust": 130
+  },
+  "hero_slots": [
+    {
+      "x": 0.2,
+      "y": 0.35,
+      "z": 1.18,
+      "diameter": 155
+    },
+    {
+      "x": 0.77,
+      "y": 0.46,
+      "z": 1.13,
+      "diameter": 141
+    },
+    {
+      "x": 0.48,
+      "y": 0.75,
+      "z": 1.29,
+      "diameter": 152
+    }
+  ],
+  "preservation_notes": "Frozen original look asset and input defaults; material not approved final. v2.2/v2.3 source HTML keep embedded atlas unchanged."
+}
